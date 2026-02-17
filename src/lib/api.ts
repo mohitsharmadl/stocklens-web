@@ -197,6 +197,28 @@ export const OPERATORS = [
 
 export const PRESET_SCREENERS: { name: string; conditions: Condition[] }[] = [
   {
+    name: "Bullish",
+    conditions: [
+      { field: "close", op: ">", value: "ema20" },
+      { field: "ema20", op: ">", value: "ema50" },
+      { field: "rsi14", op: ">", value: 50 },
+      { field: "macd", op: ">", value: "macd_signal" },
+      { field: "supertrend_dir", op: "=", value: 1 },
+      { field: "vol_spike", op: ">", value: 1.2 },
+    ],
+  },
+  {
+    name: "Bearish",
+    conditions: [
+      { field: "close", op: "<", value: "ema20" },
+      { field: "ema20", op: "<", value: "ema50" },
+      { field: "rsi14", op: "<", value: 50 },
+      { field: "macd", op: "<", value: "macd_signal" },
+      { field: "supertrend_dir", op: "=", value: -1 },
+      { field: "change_pct", op: "<", value: 0 },
+    ],
+  },
+  {
     name: "Volume Breakout",
     conditions: [
       { field: "vol_spike", op: ">", value: 2 },

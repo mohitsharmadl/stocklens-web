@@ -11,12 +11,10 @@ import {
 import ConditionRow from "./ConditionRow";
 import ResultsTable from "./ResultsTable";
 
-const defaultCondition: Condition = { field: "close", op: ">", value: "ema20" };
-
 export default function ScreenerBuilder() {
-  const [conditions, setConditions] = useState<Condition[]>([
-    { ...defaultCondition },
-  ]);
+  const [conditions, setConditions] = useState<Condition[]>(
+    PRESET_SCREENERS[0].conditions.map((c) => ({ ...c }))
+  );
   const [results, setResults] = useState<ScreenerResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
